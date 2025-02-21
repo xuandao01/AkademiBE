@@ -10,7 +10,7 @@ cloudinary.config(getCloudinaryConfig);
 
 const teacherController = {
     getTeacher: async (req, res) => {
-        const result = teacherModel.find();
+        const result = await teacherModel.find();
         res.status(200).send(result);
     },
 
@@ -56,7 +56,8 @@ const teacherController = {
                 address: user.address,
                 role: user.role,
                 dateOfBirth: user.dateOfBirth,
-                subjects: user.subject
+                subjects: user.subject,
+                grades: user.grades
             });
         } catch (error) {
             res.status(400).send({

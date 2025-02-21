@@ -2,6 +2,7 @@ import StudentModel from "../model/student.schema.js";
 import Counter from "../model/counterID.schema.js"; 
 import bcrypt from 'bcrypt';
 import { v2 as cloudinary} from 'cloudinary'
+import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -18,6 +19,41 @@ const studentController = {
                 message: error.message
             });
         }
+    },
+
+    login: async (req, res) => {
+        try {
+            const { email, password } = req.body;
+            const user = await StudentModel.findOne({ email })
+            const compare = bcrypt.compareSync(password, user.password);
+            if (!compare) {
+                throw new Error('Email or password is invalid!');
+            }
+            const token = jwt.sign({
+                studentId: user._id,
+                studentName: user.studentName,
+                email: user.email,
+            }, process.env.SECRETKEY, { expiresIn: 360 * 10 })
+            res.status(200).send({
+                message: "Login successful",
+                accessToken: token,
+                studentId: user._id,
+                studentName: user.teacherName,
+                avatar: user.avatar,
+                email: user.email,
+                phoneNumber: user.phone,
+                address: user.address,
+                role: user.role,
+                dateOfBirth: user.dateOfBirth,
+                subjects: user.subject,
+                grades: user.grades
+            });
+        } catch (error) {
+            res.status(400).send({
+                message: error.message
+            })
+        }
+
     },
 
     updateNewStudent: async (req, res) => {

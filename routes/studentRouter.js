@@ -35,6 +35,18 @@ studentRouter.post('/register', studentMiddleware.checkRegister, studentControll
 
 /**
  * @swagger
+ * /students/login:
+ *   post:
+ *     summary: Student login
+ *     description: Student login
+ * tags:
+ *   name: Student
+ *   description: Product management APIs
+ */
+studentRouter.post('/login' ,studentController.login);
+
+/**
+ * @swagger
  * /students/update-student:
  *   put:
  *     summary: Student update

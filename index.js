@@ -6,7 +6,7 @@ import timelineRouter from './routes/timelineRouter.js';
 import notiRouter from './routes/notificationRouter.js';
 import markRouter from './routes/markRouter.js';
 import teacherRouter from './routes/teacherRouter.js';
-await mongoose.connect('mongodb+srv://minhduc180104:minhduc180104@learnmongo.zli6q.mongodb.net/student-management?retryWrites=true&w=majority&appName=LearnMongo')
+await mongoose.connect('mongodb://localhost:27017/')
 import { setupSwagger } from "./swagger.js";
 
 const app = express();
@@ -21,6 +21,6 @@ app.use('/teachers', teacherRouter)
 
 setupSwagger(app);
 
-app.listen(3000, () => {
+app.listen(8080, () => {
     console.log("Sever is running!")
 })
