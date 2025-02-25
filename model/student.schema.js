@@ -12,6 +12,7 @@ const studentSchema = new mongoose.Schema({
     address: String,
     parentEmail: String,
     parentPhone: String,
+    grades: [String],
     role: {
         type: String,
         default: 'Student' 

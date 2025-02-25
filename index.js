@@ -6,6 +6,7 @@ import timelineRouter from './routes/timelineRouter.js';
 import notiRouter from './routes/notificationRouter.js';
 import markRouter from './routes/markRouter.js';
 import teacherRouter from './routes/teacherRouter.js';
+import eventRouter from './routes/eventRouter.js';
 await mongoose.connect('mongodb+srv://minhduc180104:minhduc180104@learnmongo.zli6q.mongodb.net/student-management?retryWrites=true&w=majority&appName=LearnMongo')
 import { setupSwagger } from "./swagger.js";
 
@@ -18,6 +19,7 @@ app.use('/timeline', timelineRouter)
 app.use('/notifications', notiRouter)
 app.use('/marks', markRouter)
 app.use('/teachers', teacherRouter)
+app.use('/events', eventRouter)
 
 setupSwagger(app);
 
