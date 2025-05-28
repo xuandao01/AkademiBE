@@ -26,7 +26,7 @@ const teacherController = {
             })
             res.status(201).send(saveuser)
         } catch (error) {
-            res.status(400).send({
+            res.status(500).send({
                 message: error.message
             })
         }
@@ -60,7 +60,7 @@ const teacherController = {
                 grades: user.grades
             });
         } catch (error) {
-            res.status(400).send({
+            res.status(500).send({
                 message: error.message
             })
         }
@@ -76,7 +76,7 @@ const teacherController = {
             })
             res.status(201).send(saveuser)
         } catch (error) {
-            res.status(400).send({
+            res.status(500).send({
                 message: error.message
             })
         }
@@ -98,7 +98,7 @@ const teacherController = {
                 data: newCachOtp
             })
         } catch (error) {
-            res.status(200).send({
+            res.status(500).send({
                 message: error.message
             })
         }
@@ -175,7 +175,7 @@ const teacherController = {
                 newUserP
             });
         } catch (error) {
-            res.status(400).send({
+            res.status(500).send({
                 message: error.message,
             });
         }
